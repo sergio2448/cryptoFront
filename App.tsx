@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { AuthProvider } from './src/context/AuthContext';
+import { Navigator } from './src/navigator/Navigator'
+import { TransactionsProvider } from './src/context/TransactionsContext';
 
-export default function App() {
+const Stack = createNativeStackNavigator()
+
+const AppState = ({ children }: any) => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <AuthProvider>
+      <TransactionsProvider>{ children }</TransactionsProvider>
+    </AuthProvider>
+  )
+}
+
+const App = () => {
+  return (
+    <NavigationContainer>
+      <AppState>
+        <Navigator />
+      </AppState>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
