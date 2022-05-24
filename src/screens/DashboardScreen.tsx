@@ -25,9 +25,17 @@ const DashboardScreen = ({ navigation }: Props) => {
           <TouchableOpacity
             activeOpacity={0.8}
             style={loginStyles.button}
+            onPress={ () => navigation.navigate('Register') }
+          >
+            <Text style={loginStyles.buttonText}>Register</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            style={loginStyles.button}
             onPress={ () => navigation.navigate('Login') }
           >
-            <Text style={loginStyles.buttonText}>Ingrese</Text>
+            <Text style={loginStyles.buttonText}>Log in</Text>
           </TouchableOpacity>
         </View>
     </View>

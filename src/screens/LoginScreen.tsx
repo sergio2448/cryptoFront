@@ -1,49 +1,50 @@
-import React, { useContext, useEffect } from 'react'
-import { View, Text, TextInput, TouchableOpacity, Keyboard, Alert } from 'react-native'
-import Background from '../components/Background'
-import WhiteLogo from '../components/WhiteLogo'
-import loginStyles from '../theme/loginTheme'
-import useForm from '../hooks/useForm'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { AuthContext } from '../context/AuthContext'
+import React, { useContext, useEffect } from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Keyboard,
+  Alert,
+} from "react-native";
+import Background from "../components/Background";
+import WhiteLogo from "../components/WhiteLogo";
+import loginStyles from "../theme/loginTheme";
+import useForm from "../hooks/useForm";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AuthContext } from "../context/AuthContext";
 
 interface Props extends NativeStackScreenProps<any, any> {}
 
 const LoginScreen = ({ navigation }: Props) => {
+  const { signIn, errorMessage, removeError } = useContext(AuthContext);
 
-  const { signIn, errorMessage, removeError } = useContext(AuthContext)
-
-  const { email, password, onChange, form } = useForm ({
-    email: '',
-    password: ''
-  })
+  const { email, password, onChange, form } = useForm({
+    email: "",
+    password: "",
+  });
 
   useEffect(() => {
-    if( errorMessage.length === 0 ) return;
+    if (errorMessage.length === 0) return;
 
-    Alert.alert('Login incorrecto', errorMessage,
-    [
+    Alert.alert("Login incorrecto", errorMessage, [
       {
-        text: 'Ok',
-        onPress: removeError
-      }
-    ]
-    )
-
-  }, [ errorMessage ])
-  
+        text: "Ok",
+        onPress: removeError,
+      },
+    ]);
+  }, [errorMessage]);
 
   const onLogin = () => {
-    Keyboard.dismiss()
+    Keyboard.dismiss();
 
-    signIn({ email, password })
-
-  }
+    signIn({ email, password });
+  };
 
   const handleLogin = () => {
-    signIn(form)
-    navigation.navigate('TransactionsNavigator')
-  }
+    signIn(form);
+    navigation.navigate("TransactionsNavigator");
+  };
 
   return (
     <>
@@ -53,43 +54,45 @@ const LoginScreen = ({ navigation }: Props) => {
         <Text style={loginStyles.title}>Login</Text>
         <Text style={loginStyles.label}>Email:</Text>
         <TextInput
-          placeholder='Ingrese su email:'
+          placeholder="Ingrese su email:"
           placeholderTextColor="rgba(255,255,255,0.4)"
-          keyboardType='email-address'
-          underlineColorAndroid='white'
-          selectionColor='white'
-          onChangeText={(value) => onChange(value, 'email')}
+          keyboardType="email-address"
+          underlineColorAndroid="white"
+          selectionColor="white"
+          onChangeText={(value) => onChange(value, "email")}
           value={email}
           onSubmitEditing={onLogin}
-          autoCapitalize='none'
+          autoCapitalize="none"
           autoCorrect={false}
+          style={{ color: "white" }}
         />
-        
+
         <Text style={loginStyles.label}>Password:</Text>
         <TextInput
-          placeholder='***********'
+          placeholder="***********"
           placeholderTextColor="rgba(255,255,255,0.4)"
-          underlineColorAndroid='white'
+          underlineColorAndroid="white"
           secureTextEntry
-          selectionColor='white'
-          onChangeText={(value) => onChange(value, 'password')}
+          selectionColor="white"
+          onChangeText={(value) => onChange(value, "password")}
           value={password}
           onSubmitEditing={onLogin}
-          autoCapitalize='none'
+          autoCapitalize="none"
           autoCorrect={false}
+          style={{ color: "white" }}
         />
         <View style={loginStyles.buttonContainer}>
           <TouchableOpacity
             activeOpacity={0.8}
             style={loginStyles.button}
-            onPress={ () => handleLogin()}
+            onPress={() => handleLogin()}
           >
             <Text style={loginStyles.buttonText}>Login</Text>
           </TouchableOpacity>
         </View>
       </View>
     </>
-  )
-}
+  );
+};
 
-export default LoginScreen
+export default LoginScreen;
