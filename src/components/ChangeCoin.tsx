@@ -1,3 +1,6 @@
+import "intl";
+import "intl/locale-data/jsonp/en";
+
 export const changecoin = (coin: string, value: number | string) => {
   let str = value.toString();
   let array = str.split(".");

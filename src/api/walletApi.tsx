@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:3000";
+const baseURL = "https://guarded-cliffs-22069.herokuapp.com";
 
 const walletApi = axios.create({ baseURL });
 
