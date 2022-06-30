@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import Balance from "../components/Balance";
 import { TransactionsContext } from "../context/TransactionsContext";
 import { TransactionsStackParams } from "../navigator/TransactionsNavigator";
 
@@ -21,6 +22,7 @@ const TransactionsScreen = ({ navigation }: Props) => {
 
   return (
     <View style={{ flex: 1, marginHorizontal: 10, backgroundColor: "#5856D6" }}>
+      <Balance />
       {transactions.length !== 0 ? (
         <FlatList
           data={transactions}

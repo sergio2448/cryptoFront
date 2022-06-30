@@ -14,7 +14,6 @@ const FormScreen = ({ navigation }: Props) => {
   const { loadTransactions, bitcoin, transactions } =
     useContext(TransactionsContext);
   const { ...state } = useContext(AuthContext);
-
   const [coin, setCoin] = useState("");
   const [amont, setAmont] = useState("");
 
