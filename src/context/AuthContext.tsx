@@ -15,6 +15,7 @@ type AuthContextProps = {
   id: any;
   usd: any;
   btc: any;
+  username: any;
 };
 
 const authInicialState: AuthState = {

@@ -22,7 +22,7 @@ const RegisterScreen = ({ navigation }: Props) => {
 
   const register = async () => {
     let userData = await axios({
-      url: `http://localhost:3000/user`,
+      url: `https://guarded-cliffs-22069.herokuapp.com/user`,
       method: "Post",
       data: {
         user: {

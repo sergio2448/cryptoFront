@@ -14,13 +14,9 @@ const FormScreen = ({ navigation }: Props) => {
   const { loadTransactions, bitcoin, transactions } =
     useContext(TransactionsContext);
   const { ...state } = useContext(AuthContext);
-
-  console.log("trans", transactions);
-
   const [coin, setCoin] = useState("");
   const [amont, setAmont] = useState("");
 
-  console.log("amont", amont);
   const {
     type_transaction,
     type_coin_send,
@@ -33,8 +29,6 @@ const FormScreen = ({ navigation }: Props) => {
     type_coin_send: "",
     type_coin_get: "",
   });
-
-  console.log("form", form);
 
   const handleTransaction = (value: any) => {
     onChange(value, "type_transaction");
@@ -55,7 +49,7 @@ const FormScreen = ({ navigation }: Props) => {
 
   const data1 = async () => {
     let bala = await axios({
-      url: `http://localhost:3000/user/update/${state.id}`,
+      url: `https://guarded-cliffs-22069.herokuapp.com/user/update/${state.id}`,
       method: "Put",
       headers: {
         Authorization: `Bearer ${state.auth_token}`,
